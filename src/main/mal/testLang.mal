@@ -79,7 +79,30 @@ category interleavedVariables{
 
 }
 
+category setOperations{
+  asset SetOpsAssetA {
+    | testStepSetOpsA
+      -> (fieldB1 \/ fieldB2).testStepSetOpsB1,
+         (fieldB1 /\ fieldB2).testStepSetOpsB2,
+         (fieldB1 - fieldB2).testStepSetOpsB3
+  }
+
+  asset SetOpsAssetB {
+    | testStepSetOpsB1
+
+    | testStepSetOpsB2
+
+    | testStepSetOpsB3
+  }
+}
+
 associations {
+  // Subtype test association
   BaseAsset [subtype_test_assoc_field1] * <-- SubtypeTestAssoc --> * [subtype_test_assoc_field2] OtherAsset
+  // Interleaved variables association
   AssetA [fieldA] * <-- InterleaveVarsAssoc --> * [fieldB] AssetB
+  // Set operations test associationsA
+  SetOpsAssetA [fieldA1] * <-- SetOps1 --> * [fieldB1] SetOpsAssetB
+  SetOpsAssetA [fieldA2] * <-- SetOps2 --> * [fieldB2] SetOpsAssetB
+  SetOpsAssetA [fieldA3] * <-- SetOps3 --> * [fieldB3] SetOpsAssetB
 }
