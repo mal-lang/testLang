@@ -4,7 +4,7 @@ patterns in MAL languages.
 
 # How to compile testLang
 
-1. Download and install malc: `https://github.com/mal-lang/malc`
+1. Download and install malc: https://github.com/mal-lang/malc
 
 2. Clone this repository: `git@github.com:mal-lang/testLang.git`
 

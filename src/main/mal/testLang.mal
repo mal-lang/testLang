@@ -60,6 +60,26 @@ category subType{
 
 }
 
+category interleavedVariables{
+  asset AssetA {
+    let A1 = fieldB
+    let A2 = fieldB.B1()
+    | testStepA
+      -> A2().testStepA,
+         A1().testStepB
+  }
+
+  asset AssetB {
+    let B1 = fieldA
+    let B2 = fieldA.A1()
+    | testStepB
+      -> B1().testStepA,
+         B2().testStepB
+  }
+
+}
+
 associations {
   BaseAsset [subtype_test_assoc_field1] * <-- SubtypeTestAssoc --> * [subtype_test_assoc_field2] OtherAsset
+  AssetA [fieldA] * <-- InterleaveVarsAssoc --> * [fieldB] AssetB
 }
